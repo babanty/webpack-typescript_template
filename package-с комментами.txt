@@ -1,0 +1,38 @@
+{
+  "name": "webpack-typescript_template", // имя проекта
+  "version": "0.0.0", // версия проекта
+  "description": "", // описание проекта
+  "private": true, // чтобы ненароком не отправить свой проект в публичный доступ в npm
+  "scripts": { // в консольке можно писать "npm run <имя скрипта>", например npm run devWebpack
+    "devWebpack": "cross-env NODE_ENV=development webpack --mode development", // сбилдит проект в папку "ui_artefacts" в режиме для разработчика (с sourceMap для удобного дебага)
+    "build": "webpack --mode production",   // сбилдит проект в папку "ui_artefacts" для выкладки на на продакшн
+    "watch": "cross-env NODE_ENV=development webpack --mode development --watch", // сбилдит проект в папку "ui_artefacts" в режиме для разработчика (с sourceMap для удобного дебага)
+                                                                                  // и постоянно будет перебилживать если внесли изменения в файлы
+
+    "dev": "cross-env NODE_ENV=development webpack-dev-server --mode development" // НАИБОЛЕЕ предпочтительный режим для разработчика т.к. автоматом поднимает server с сайтом по адресу: http://localhost:4999
+                                                                                  // постоянно следит за изменениями в файлах и при этом все билдит в оперативную память для быстроты работы
+  },
+  "author": "a.s.tkachuk <tkachuk.aleksandr.sergeevich@gmail.com>", // автор проекта
+  "license": "Apache-2.0", // лицензия использования исходного кода
+  "devDependencies": { // подключенные "пакеты" с полезными фичами, которые будут "видны" только для программстского режима
+    "@babel/core": "^7.9.0", // babel - нужен чтобы переваривать js\ts\jsx, который написан на более современном стандарте языка в стандарт читаемый всеми браузерами
+    "@babel/preset-env": "^7.9.0", // стандартная штука идущая вместе с babel-ом
+    "@babel/preset-typescript": "^7.9.0", // пакет для того, чтобы babel смог переварить typeScript
+    "babel-loader": "^8.1.0", // [вероятно] дружим babel с webpack-ом
+    "clean-webpack-plugin": "^3.0.0", // при билде удаляет все что было раньше в папке, куда все билдится (выходной\целевой папке - ui_artefacts)
+    "copy-webpack-plugin": "^5.1.1", // пакет, позволяющий копировать файлы\папки при билде из src в ui_artefacts, например папка images
+    "cross-env": "^7.0.2", // позволяет удобно передавать в webpack переменные окружения указывая их в scripts (секция выше)
+    "css-loader": "^3.4.2", // позволяет webpack-у билдить css в выходной html
+    "html-webpack-plugin": "^4.0.2", // позволяет webpack-у делать выходной html (в нашем случае index.html)
+    "i": "^0.3.6", // без понятия
+    "style-loader": "^1.1.3", // позволяет webpack-у билдить css в выходной html
+    "webpack": "^4.42.1", // пакет для работы webpack-a
+    "webpack-cli": "^3.3.11", // пакет для работы webpack-a
+    "webpack-dev-server": "^3.10.3" // пакет для работы devserver-a, который включается если написать npm run dev
+  },
+  "dependencies": { // подключенные "пакеты" с полезными фичами
+    "@babel/polyfill": "^7.8.7", // нужен для babel-я для поддержки дополнительных фич
+    "normalize.css": "^8.0.1" // библиотека делающая css-стили всех браузеров "одинаковыми"
+  },
+  "browserslist": "> 0.25%, not dead" // указывает babel-ю, какие браузеры должны поддерживать выходной код (тут на стройка на - не мертвые и 99,75%)
+}
