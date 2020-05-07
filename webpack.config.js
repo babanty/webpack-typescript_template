@@ -64,6 +64,9 @@ module.exports = {
                         presets:[ // подключаем стандартный пресет (кучка модулей отвечающих за переваривание синтаксиса)
                             '@babel/preset-env',
                             '@babel/preset-typescript'
+                        ],
+                        plugins: [ // плагин необходимый для того чтобы в классах typescript сходу можно было инициализировать поля
+                            "@babel/plugin-proposal-class-properties"
                         ]
                     }
                 }
